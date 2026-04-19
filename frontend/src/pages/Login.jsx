@@ -1,24 +1,36 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { login } from "../services/api";
 import "../styles/auth.css";
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
 
-        const user = JSON.parse(localStorage.getItem("user"));
+        if (!email || !password) {
+            alert("Please fill all fields");
+            return;
+        }
 
-        if (!user) return alert("Please signup first");
-
-        if (user.email === email && user.password === password) {
+        setLoading(true);
+        try {
+            const response = await login({ email, password });
+            
+            // Save user to localStorage
+            localStorage.setItem("user", JSON.stringify(response.data.user));
+            localStorage.setItem("userId", response.data.user.id);
             localStorage.setItem("isNewUser", "false");
+
             navigate("/welcome");
-        } else {
-            alert("Invalid credentials");
+        } catch (error) {
+            alert(error.response?.data?.message || "Login failed");
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -30,16 +42,20 @@ export default function Login() {
                 <input
                     type="email"
                     placeholder="Email"
+                    value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
 
                 <input
                     type="password"
                     placeholder="Password"
+                    value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
 
-                <button type="submit">Login</button>
+                <button type="submit" disabled={loading}>
+                    {loading ? "Logging in..." : "Login"}
+                </button>
             </form>
         </div>
     );
