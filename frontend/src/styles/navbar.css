@@ -1,18 +1,42 @@
 .navbar {
     display: flex;
     justify-content: space-between;
+    /* pushes right side */
     align-items: center;
     background: #2563eb;
-    color: white;
     padding: 15px 30px;
-}
-
-.navbar a {
-    margin-left: 15px;
     color: white;
-    text-decoration: none;
 }
 
+/* Right section */
+.navbar div {
+    display: flex;
+    align-items: center;
+}
+
+/* Links */
+.navbar a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: white;
+    /* FIX: visible */
+    font-weight: 500;
+}
+
+/* Hover */
 .navbar a:hover {
-    text-decoration: underline;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 5px 8px;
+    border-radius: 5px;
+}
+
+/* Logout button */
+.logout-btn {
+    margin-left: 20px;
+    padding: 6px 12px;
+    background: white;
+    color: #2563eb;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
 }
