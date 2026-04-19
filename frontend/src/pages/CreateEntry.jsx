@@ -1,8 +1,20 @@
 import { useState } from "react";
-import "../styles/form.css";
+import { useNavigate } from "react-router-dom";
 
-export default function CreateEntry() {
+export default function CreateEntry({ setEntries }) {
     const [title, setTitle] = useState("");
+    const navigate = useNavigate();
+
+    const handleSubmit = () => {
+        const newEntry = {
+            title,
+            date: new Date().toISOString().split("T")[0],
+        };
+
+        setEntries((prev) => [...prev, newEntry]);
+
+        navigate("/"); // go back to home
+    };
 
     return (
         <div className="form-container">
@@ -14,7 +26,7 @@ export default function CreateEntry() {
                 onChange={(e) => setTitle(e.target.value)}
             />
 
-            <button>Save</button>
+            <button onClick={handleSubmit}>Save</button>
         </div>
     );
 }
