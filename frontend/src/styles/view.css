@@ -1,0 +1,51 @@
+.view-container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+.view-title {
+    margin-bottom: 10px;
+}
+
+/* Date */
+.view-date {
+    color: gray;
+    margin-bottom: 15px;
+}
+
+/* Description */
+.view-description {
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* Images */
+.view-container img {
+    width: 100%;
+    max-width: 600px;
+    height: 250px;
+    object-fit: cover;
+    margin: 10px auto;
+    display: block;
+    border-radius: 10px;
+}
+
+/* Button */
+.back-btn {
+    margin-top: 20px;
+    padding: 10px 16px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.back-btn:hover {
+    background: #1e40af;
+}
